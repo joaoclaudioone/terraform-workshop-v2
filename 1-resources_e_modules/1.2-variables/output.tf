@@ -1,22 +1,18 @@
 /*
 Outputs
+The outputs values are provided by the values that the module use.
 */
-output "private_dns" {
-    description = "Endereço privado da instância"
-    value       = aws_instance.ec2_instance.private_dns
+output "bucket_arn" {
+  description = "S3 bucket ARN"
+  value       = aws_s3_bucket.my_s3_bucket.arn
 }
 
-output "private_ip" {
-    description = "Ip privado da instância"
-    value       = aws_instance.ec2_instance.private_ip  
+output "bucket_acl" {
+  description = "S3 bucket ACL"
+  value       = aws_s3_bucket_acl.my_bucket_acl.acl
 }
 
-output "public_ip" { 
-    description = "ip publico da instancia"
-    value       = aws_instance.ec2_instance.public_ip
-}
-
-output "ec2" {
-  description = "Mapa com todos os valores disponíveis para o EC2"
-  value = aws_instance.ec2_instance
+output "aws_region" {
+  description = "The AWS region used for the resource creation"
+  value = var.region
 }

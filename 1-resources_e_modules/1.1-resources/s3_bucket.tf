@@ -1,5 +1,5 @@
 /*
- * This is the provider section. We can seed some parameters as example. All parameters are optional.
+ * This is the provider section. We can see some parameters as example. All parameters are optional.
  */
 provider "aws" {
   # The region where your infrastructure will be created. In the next exercise we will see how to add some variables here
@@ -20,7 +20,7 @@ provider "aws" {
  */
 resource "aws_s3_bucket" "my_s3_bucket" {
   # bucket_prefix will be useful if you do not want to be worried if the bucket name already exist. But it is possible to use bucket_name instead.
-  bucket_prefix = "workshop_bucket"
+  bucket_prefix = "workshop-bucket"
 }
 
 /*
