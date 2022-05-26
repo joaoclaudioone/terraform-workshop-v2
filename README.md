@@ -17,12 +17,13 @@ The first step before we create anything is to run the command `terraform init`.
 And finally we could apply our code using `terraform apply`. This will start the creation process of our infrastructure. Another option is to destroy all the infrastructure that was created with `terraform destroy`. 
 
 These are the basic commands, we have more advanced commands that could che checked here https://www.terraform.io/cli/commands 
+
 ### Index
-[1 - Resources and modules](./1-resources_e_modules/README.md)
+[1 - Resources and modules](./1-resources_and_modules/README.md)
  
-> [1.1 - Resources](./1-resources_e_modules/1.1-resources/RESOURCES.md)
+> [1.1 - Resources](./1-resources_and_modules/1.1-resources/RESOURCES.md)
  
-> [1.2 - Variables](1-resources_e_modules/1.2-variables/VARIABLES.md)
+> [1.2 - Variables](1-resources_and_modules/1.2-variables/VARIABLES.md)
  
-> [1.3 - Module](./1-resources_e_modules/1.3-modules/MODULE.md)
+> [1.3 - Module](./1-resources_and_modules/1.3-modules/MODULE.md)
 
