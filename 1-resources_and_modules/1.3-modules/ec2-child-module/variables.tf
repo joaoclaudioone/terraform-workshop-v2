@@ -22,7 +22,7 @@ variable "qtd_instances" {
 }
 
 variable "ingress_list" {
-  description = "Default riles for security group ingress"
+  description = "Default rules for security group ingress"
   type        = list(any)
 }
 

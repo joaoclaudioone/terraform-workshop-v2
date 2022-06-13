@@ -9,6 +9,7 @@ provider "aws" {
     tags = {
       Project    = "Terraform workshop",
       Terraform  = "True",
+      One        = "Two",
       Repository = "https://code.cocus.com/jcsilva/terraform-workshop"
     }
   }
