@@ -35,3 +35,6 @@ keys
 
 # ignore hcl files
 *.hcl
+
+$ ignore idea folder
+.idea
