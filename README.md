@@ -13,7 +13,7 @@ Terraform can be installed on both Windows and Unix-like systems. Detailed instr
 
 ## Introduction
 
-Terraform is an open-source tool that enables the creation and management of infrastructure, service platforms, and services within a given platform.
+Terraform is a tool that enables the creation and management of infrastructure, service platforms, and services within a given platform.
 
 Using a declarative language, Terraform requires users to describe their objectives, and then it generates an execution plan to achieve those objectives. This approach differs from imperative languages, where users must explicitly outline all the steps to reach the final objective.
 

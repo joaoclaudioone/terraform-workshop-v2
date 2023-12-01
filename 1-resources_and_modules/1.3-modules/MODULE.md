@@ -1,4 +1,4 @@
-# Code reuse
+# Code reuse basic
 
 In this section, we will explore the concepts of modules, remote state, and data sources.
 
