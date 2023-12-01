@@ -34,3 +34,7 @@ These are the fundamental commands; additional advanced commands can be found [h
 > [1.2 - Variables](1-resources_and_modules/1.2-variables/VARIABLES.md)
 
 > [1.3 - Module](./1-resources_and_modules/1.3-modules/MODULE.md)
+
+[2 - Language Features](./2-language_features/README.md)
+
+> [2.1 - Expressions Exercise](./2-language_features/2.1-expressions_exercise/README.md)
