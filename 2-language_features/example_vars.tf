@@ -1,3 +1,7 @@
+variable "a" {
+  default = ""
+}
+
 variable "list" {
   type = list(string)
   default = ["a", "b", "c", "id"]

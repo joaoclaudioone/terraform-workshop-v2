@@ -8,7 +8,7 @@ Meta-arguments in Terraform are special arguments that can be used with resource
 
 ### depends_on
 
-Terraform automatically generates dependency graph based on references. This meta-argument let us enforce that one resource will be create before another. 
+Terraform automatically generates dependency graph based on references. This meta-argument let us enforce that one resource will be create before another.
 
 ```hcl
 # Resource A
@@ -31,7 +31,7 @@ resource "aws_instance" "instance_b" {
 
 ### count
 
-By default, a resource block configures one real infrastructure object. The `count` meta-argument accepts a whole number, and creates that many instances of the resource or module. Each instance has a distinct infrastructure object associated with it, and each is separately created, updated, or destroyed when the configuration is applied.
+By default, a resource block configures one real infrastructure object. The `count` meta-argument accepts a whole number and creates that many instances of the resource or module. Each instance has a distinct infrastructure object associated with it, and each is separately created, updated, or destroyed when the configuration is applied.
 
 ```hcl
 resource "aws_instance" "server" {
@@ -86,7 +86,6 @@ resource "aws_instance" "instances" {
   instance_type = each.value.instance_type
   # other configurations...
 }
-
 ```
 
 #### When to Use `for_each` Instead of `count`
@@ -101,7 +100,27 @@ The arguments available within a lifecycle block are `create_before_destroy`, `p
 
 - `create_before_destroy` (bool) - By default, when Terraform must change a resource argument that cannot be updated in-place due to remote API limitations, Terraform will instead destroy the existing object and then create a new replacement object with the new configured arguments.
 
+```hcl
+resource "aws_instance" "example" {
+  # ...
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+```
+
 - `prevent_destroy` (bool) - This meta-argument, when set to true, will cause Terraform to reject with an error any plan that would destroy the infrastructure object associated with the resource, as long as the argument remains present in the configuration.
+
+```hcl
+resource "aws_instance" "example" {
+  # ...
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+```
 
 - `ignore_changes` (list of attribute names) - By default, Terraform detects any difference in the current settings of a real infrastructure object and plans to update the remote object to match configuration.
 
@@ -113,7 +132,7 @@ resource "aws_instance" "example" {
     ignore_changes = [
       # Ignore changes to tags, e.g. because a management agent
       # updates these based on some ruleset managed elsewhere.
-      tags,
+      tags
     ]
   }
 }
@@ -136,7 +155,6 @@ resource "aws_instance" "example" {
   }
 }
 ```
-
 
 ## Expressions
 
@@ -272,3 +290,62 @@ tolist([
 [Expressions Exercise](./2.1-expressions_exercise/README.md)
 
 ## Dynamic blocks
+
+Dynamic blocks in Terraform allow you to generate configurations dynamically based on a collection of values. This is particularly useful when you need to create multiple instances of a similar block or configuration, and the number of instances is determined at runtime.
+
+Consider a scenario where you want to create multiple AWS security group rules, and the rules are specified in a list.
+
+```hcl
+# Define a variable with a list of security group rules
+variable "security_group_rules" {
+  type = list(object({
+    type        = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    description = string
+  }))
+  default = [
+    {
+      type        = "ingress"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "SSH"
+    },
+    {
+      type        = "egress"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      description = "All traffic"
+    },
+  ]
+}
+
+# Create an AWS security group with dynamic rules
+resource "aws_security_group" "example" {
+  name        = "example-security-group"
+  description = "Example security group"
+
+  dynamic "ingress" {
+    for_each = var.security_group_rules
+
+    content {
+      type        = ingress.value.type
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      description = ingress.value.description
+    }
+  }
+}
+```
+
+In this example:
+
+- The `variable "security_group_rules"` is a list containing configurations for different security group rules.
+- The `resource "aws_security_group" "example"` creates an AWS security group.
+- The `dynamic "ingress"` block iterates over each element in `var.security_group_rules`, dynamically creating ingress rules based on the provided configurations.
+
+This allows you to define a flexible set of security group rules, and Terraform will generate the necessary configurations dynamically based on the contents of the list.
