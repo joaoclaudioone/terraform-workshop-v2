@@ -67,7 +67,6 @@ For detailed information on Terraform concepts and commands, refer to the [Terra
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | project | Project Name. Will be used to name the resources | `string` | `"workshop-bucket"` | no |
-| qtd_instances | Quantity of instances that will be created | `number` | `3` | no |
 | region | AWS Region | `string` | `"eu-west-1"` | no |
 | tags | Default tags for resources | `map` | ```{ "repository": "https://code.cocus.com/jcsilva/terraform-workshop", "terraform": "true" }``` | no |
 

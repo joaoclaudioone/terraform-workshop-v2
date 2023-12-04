@@ -17,9 +17,3 @@ variable "region" {
   type        = string
   default     = "eu-west-1"
 }
-
-variable "qtd_instances" {
-  description = "Quantity of instances that will be created"
-  type        = number
-  default     = 3
-}

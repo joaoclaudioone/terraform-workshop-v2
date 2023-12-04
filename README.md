@@ -38,3 +38,7 @@ These are the fundamental commands; additional advanced commands can be found [h
 [2 - Language Features](./2-language_features/README.md)
 
 > [2.1 - Expressions Exercise](./2-language_features/2.1-expressions_exercise/README.md)
+
+[3 - Organize your code](./3-organize_your_code/README.md)
+
+[4 - Test your code](./4-test_your_code/README.md)
