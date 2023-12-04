@@ -17,4 +17,5 @@ variable "policy_resources" {
 }
 
 variable "policy_name" {
+  default = ""
 }
