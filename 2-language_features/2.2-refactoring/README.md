@@ -24,9 +24,6 @@ variable "s3_buckets" {
 }
 
 # Create S3 buckets dynamically
-output "s3_bucket_ids" {
-  value = [for bucket_config in var.s3_buckets : module.s3[bucket_config.project].s3_bucket_id]
-}
 
 module "s3" {
   source = "../s3-child-module"
@@ -35,6 +32,11 @@ module "s3" {
 
   project = each.value.project
   region  = each.value.region
+}
+
+# output.tf
+output "s3_bucket_ids" {
+  value = [for bucket_config in var.s3_buckets : module.s3[bucket_config.project].s3_bucket_id]
 }
 ```
 </details>
