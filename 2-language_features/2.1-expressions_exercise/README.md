@@ -17,7 +17,7 @@ resource "random_id" "id" {
 }
 
 resource "aws_iam_policy" "workshop_policy" {
-  name   = (var.policy-name != "" ? var.policy-name : random_id.id.hex)
+  name   = (var.policy_name != "" ? var.policy_name : random_id.id.hex)
   policy = data.aws_iam_policy_document.workshop_policy.json
 }
 
